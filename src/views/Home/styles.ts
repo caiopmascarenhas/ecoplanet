@@ -71,6 +71,7 @@ export const Footer = styled.View`
   margin-top: 10%;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 6%;
 `
 export const FooterText = styled.Text`
   line-height: 20px;

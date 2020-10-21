@@ -53,6 +53,7 @@ export const InputSelected = styled.View`
 `
 export const ButtonContainer = styled.View`
     margin-top: 20%;
+    padding-bottom: 6%
 `
 export const styles = StyleSheet.create({
   inputSelect: {

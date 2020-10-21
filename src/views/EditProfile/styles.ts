@@ -1,14 +1,14 @@
-import React from 'react'
-import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { Platform, StyleSheet } from 'react-native';
+import { getBottomSpace } from 'react-native-iphone-x-helper'
 
 export const Container = styled.View`
-  background: #563399;
   flex:1;
-  width: 100%;
-  height: 100%;
-`
+  justify-content: center;
+  padding: 0 30px ${Platform.OS === 'android' ? 60 : 40}px;
+`;
+
 export const Header = styled.View`
   padding: 24px;
   padding-top: ${getStatusBarHeight() + 24}px;
@@ -26,52 +26,45 @@ export const BackButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `
-export const Content = styled.View`
-  padding: 0 8%;
-  justify-content: center;
-`
-export const Description = styled.Text`
-  font-size: 16px;
-  margin-top: 4%;
-  margin-bottom: 8%;
-  font-family: 'Roboto';
-  color: #DCDCDC;
-`
-export const MapContainer = styled.View`
 
-`
-export const MapMarkerContainer = styled.View`
-  width: 90px;
-	height: 70px;
-	background: #34CB79;
-	flex-direction: column;
-	border-radius: 8px;
-	overflow: hidden;
-	align-items: center;    
-`
-export const MapTitle = styled.Text`
-  flex:1;
-  font-family: 'Roboto';
+export const Title = styled.Text`
+  font-size: 24px;
+  color: #F4EDE8;
+  font-family: 'RobotoSlab-Medium';
+  margin: 64px 0 24px;
+`;
+
+export const BackToSignIn = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0%;
+  padding: 16px 0 ${16 + getBottomSpace()}px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const BackToSignInText = styled.Text`
   color: #FFF;
-  font-size: 13px;
-  line-height: 23px;
-`
+  font-size: 18px;
+  font-family: 'RobotoSlab-Regular';
+  margin-left: 16px;
+`;
+
+export const InputSelected = styled.View`
+  justify-content: center;
+  background: #ECECEC;
+  color: #000;
+  margin-bottom: 2.5%;
+  height: 60px;
+  border-radius: 10px;
+  padding-left: 5%;
+`;
+
 export const styles = StyleSheet.create({
   inputSelect: {
-    color: "#000"
-  },
-  map: {
-    height: 400,
-    width: '100%',
-  },
-  mapMarkerImage: {
-    width: 90,
-    height: 45,
-    resizeMode: 'cover',
-  },
-  mapMarker: {
-    width: 90,
-    height: 80,
+    color: "#563399"
   },
   item: {
 		backgroundColor: '#fff',
@@ -93,6 +86,4 @@ export const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 12,
   },
-  
 });
-
