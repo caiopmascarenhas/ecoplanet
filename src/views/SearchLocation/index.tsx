@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather';
 import RNPickerSelect from 'react-native-picker-select';
+import { Button } from '../../components';
 import Localization from '../../assets/assets/localization.png';
 import {
   styles,
@@ -17,7 +18,6 @@ import {
   InputSelected,
   ButtonContainer,
 } from './styles';
-import Button from '../../components/button';
 
 Icon.loadFont();
 
@@ -36,7 +36,7 @@ const SearchLocation: React.FC = () => {
   const [selectedUf, setSelectedUf] = useState(' ');
   const [selectedCity, setSelectedCity] = useState(' ');
   const { goBack, navigate } = useNavigation();
-  
+
   const navigateBack = useCallback(() => {
     goBack();
   }, [goBack]);

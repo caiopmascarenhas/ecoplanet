@@ -1,19 +1,36 @@
 import styled from 'styled-components/native';
 import { Platform, StyleSheet } from 'react-native';
-import { getBottomSpace } from 'react-native-iphone-x-helper'
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
+
+export const Header = styled.View`
+  padding: 24px;
+  padding-top: ${getStatusBarHeight() + 20}px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
 
 export const Container = styled.View`
   flex:1;
   justify-content: center;
-  padding: 0 30px ${Platform.OS === 'android' ? 150 : 40}px;
+  padding: 0 30px ${Platform.OS === 'android' ? 20 : 40}px;
 `;
 
 export const Title = styled.Text`
-  font-size: 24px;
+  font-size: 18px;
+  font-weight:700;
   color: #F4EDE8;
-  font-family: 'RobotoSlab-Medium';
-  margin: 64px 0 24px;
+  font-family: 'Roboto';
+  margin: 20px 0 24px;
 `;
+
+export const SubTitle = styled.Text`
+  font-size: 16px;
+  font-weight:700;
+  color: #F4EDE8;
+  font-family: 'Roboto';
+  margin: 20px 0 0px;  
+`
 
 export const BackToSignIn = styled.TouchableOpacity`
   position: absolute;
@@ -29,7 +46,7 @@ export const BackToSignIn = styled.TouchableOpacity`
 export const BackToSignInText = styled.Text`
   color: #FFF;
   font-size: 18px;
-  font-family: 'RobotoSlab-Regular';
+  font-family: 'Roboto';
   margin-left: 16px;
 `;
 

@@ -1,13 +1,10 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
-import { useNavigation } from '@react-navigation/native'
-import { Image, TextInput, KeyboardAvoidingView, Platform, View, ScrollView, CheckBox, TouchableOpacity, Text } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
+import { Button, Input, ButtonBack } from '../../components';
 import logoImg from '../../assets/assets/logo.png';
-import Input from '../../components/input';
-import Button from '../../components/button';
 import Bateriais from '../../assets/assets/bateriais.png';
 import Lampadas from '../../assets/assets/lampadas.png';
 import Oleo from '../../assets/assets/oleo.png';
@@ -16,15 +13,21 @@ import PapeisEPapelao from '../../assets/assets/papeisepapelao.png';
 import Eletronico from '../../assets/assets/eletronicos.png';
 import Moveis from '../../assets/assets/moveis.png';
 import {
+  Image,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  Text
+} from 'react-native';
+import {
   styles,
   Container,
   Title,
-  BackToSignIn,
-  BackToSignInText,
+  SubTitle,
   InputSelected,
-  Header,
-  BackButton,
-  ButtonTitle
+  Header
 } from './styles';
 
 interface SignUpFormData {
@@ -35,7 +38,7 @@ interface SignUpFormData {
 
 const EditProfile: React.FC = () => {
 
-  const { goBack, navigate } = useNavigation();
+  const { navigate } = useNavigation();
   const formRef = useRef<FormHandles>(null);
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
@@ -44,39 +47,39 @@ const EditProfile: React.FC = () => {
   const cepInputRef = useRef<TextInput>(null);
   const stateInputRef = useRef<TextInput>(null);
   const cityInputRef = useRef<TextInput>(null);
+  const addressInputRef = useRef<TextInput>(null);
+  const numberInputRef = useRef<TextInput>(null);
+  const referenceInputRef = useRef<TextInput>(null);
 
   const handleProfile = useCallback(async (data: SignUpFormData) => {
     navigate('ProfileProvider');
   }, []);
 
-  const handleBack = (() => {
-    goBack();
-  })
-
   return (
     <>
+      <Header>
+        <ButtonBack icon="arrow-left" color="#FFF" size={18} />
+      </Header>
+
       <KeyboardAvoidingView
         style={{ flex: 1, }}
         enabled
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-        <Header>
-          <BackButton onPress={handleBack}>
-            <Feather name="arrow-left" size={18} color="#FFF" />
-            <ButtonTitle>Voltar</ButtonTitle>
-          </BackButton>
-        </Header>
+
         <ScrollView>
+
           <Container>
-            <Image source={logoImg} style={{ width: '100%', height: 120, marginTop: 30 }} resizeMode="contain" />
-            <View>
-              <Title>Alterar dados</Title>
-            </View>
+
+            <Image source={logoImg} style={{ width: '100%', height: 120, marginTop: 5, marginBottom: 20 }} resizeMode="contain" />
+
+            <Title>Alterar cadastro</Title>
+
             <Form ref={formRef} onSubmit={handleProfile}>
               <Input
                 autoCapitalize="words"
                 name="name"
                 feather="user"
-                placeholder="Jhoe Doe"
+                placeholder="Jhon Doe"
                 returnKeyType="next"
                 onSubmitEditing={() => { emailInputRef.current?.focus() }}
               />
@@ -97,14 +100,15 @@ const EditProfile: React.FC = () => {
                 textContentType="newPassword"
                 name="password"
                 feather="lock"
-                placeholder="***********"
+                placeholder="***************"
                 returnKeyType="next"
                 onSubmitEditing={() => entityInputRef.current?.focus()}
               />
+
               <InputSelected>
                 <RNPickerSelect
                   style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
-                  placeholder={{ label: 'PRESTADOR DE SERVIÇO CARRETO', color: "#666360" }}
+                  placeholder={{ label: 'Selecione uma UF', color: "#666360" }}
                   onValueChange={(value) => console.log(value)}
                   items={[
                     { label: 'EMPRESA LOCAL', value: 'EMPRESA LOCAL' },
@@ -112,6 +116,7 @@ const EditProfile: React.FC = () => {
                   ]}
                 />
               </InputSelected>
+
               <Input
                 ref={entityInputRef}
                 autoCapitalize="words"
@@ -129,17 +134,34 @@ const EditProfile: React.FC = () => {
                 autoCorrect={false}
                 name="whatsapp"
                 fontAwesome="whatsapp"
-                placeholder="(00) 00000-0000"
+                placeholder="(xx) xxxxx-xxxx"
                 returnKeyType="next"
                 onSubmitEditing={() => cepInputRef.current?.focus()}
               />
               <Input
                 ref={cepInputRef}
-                autoCapitalize="words"
-                autoCorrect={false}
                 name="cep"
                 feather="map"
-                placeholder="00000-000"
+                placeholder="xxxxx-xxx"
+                keyboardType="number-pad"
+                returnKeyType="next"
+                onSubmitEditing={() => stateInputRef.current?.focus()}
+              />
+              <Input
+                ref={addressInputRef}
+                autoCapitalize="words"
+                autoCorrect={false}
+                name="address"
+                feather="map"
+                placeholder="R. Serra Paranapiacaba"
+                returnKeyType="next"
+                onSubmitEditing={() => numberInputRef.current?.focus()}
+              />
+              <Input
+                ref={numberInputRef}
+                name="number"
+                feather="map"
+                placeholder="15232"
                 keyboardType="number-pad"
                 returnKeyType="next"
                 onSubmitEditing={() => stateInputRef.current?.focus()}
@@ -161,14 +183,29 @@ const EditProfile: React.FC = () => {
                 name="city"
                 feather="map"
                 placeholder="Carapicuíba"
+                returnKeyType="next"
+                onSubmitEditing={() => referenceInputRef.current?.focus()}
+              />
+              <Input
+                ref={referenceInputRef}
+                autoCapitalize="words"
+                autoCorrect={false}
+                name="reference"
+                feather="map"
+                placeholder="-"
                 returnKeyType="send"
                 onSubmitEditing={() => formRef.current?.submitForm()}
               />
+
+
+              <SubTitle>Alterar o tipo de coleta</SubTitle>
+
               <ScrollView
-                style={{ marginTop: 40, paddingBottom: '20%' }}
+                style={{ marginTop: '5%', paddingBottom: '6%' }}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ paddingHorizontal: 2 }}>
+
                 <TouchableOpacity
                   style={styles.item}
                   activeOpacity={0.7}>
@@ -211,11 +248,17 @@ const EditProfile: React.FC = () => {
                   <Image source={Eletronico} style={{ width: 40, height: 40 }} />
                   <Text style={styles.itemTitle}>Resíduos Eletrônicos</Text>
                 </TouchableOpacity>
+
               </ScrollView>
-              <Button onPress={handleProfile}>Salvar alteração</Button>
+
+              <Button onPress={handleProfile}>Salvar</Button>
+
             </Form>
+
           </Container>
+
         </ScrollView>
+
       </KeyboardAvoidingView>
     </>
   );

@@ -8,6 +8,7 @@ export const Container = styled.View`
   width: 100%;
   height: 100%;
 `
+
 export const Header = styled.View`
   padding: 24px;
   padding-top: ${getStatusBarHeight() + 24}px;
@@ -15,41 +16,37 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 `
-export const ButtonTitle = styled.Text`
-  font-size: 18px;
-  color: #F4EDE8;
-  font-weight: 700; 
-  margin-left: 10%;
-`
-export const BackButton = styled.TouchableOpacity`
-  flex-direction: row;
-  align-items: center;
-`
+
 export const Content = styled.View`
-  padding: 0 8%;
+  padding: 0 8% 30%;
   justify-content: center;
 `
-export const Title = styled.Text`
-  color: #e0e0e0;
-  font-size: 28px;
-  font-weight: 700;
-  font-family: 'Roboto';
-  margin-top: 18%;
-`
-export const Description = styled.Text`
-  flex-direction: row;
-  justify-content: center;
-`
+
 export const NameProvider = styled.Text`
   color: #e0e0e0;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
   font-family: 'Roboto';
 `
+
+export const Description = styled.View`
+  margin-top: 10%;
+`
+
+export const Title = styled.Text`
+  color: #e0e0e0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto';
+`
+
 export const WhatsApp = styled.Text`
   color: #e0e0e0;
   font-size: 16px;
   font-family: 'Roboto';
+  margin-top: 2%;
 `
+
 export const Items = styled.Text`
   font-family: 'Roboto';
   font-size: 16px;
@@ -57,14 +54,35 @@ export const Items = styled.Text`
   margin-top: 8%;
   color: #C2C0C0;
 `
+
 export const Address = styled.View`
   margin-top: 8%;
 `
+
 export const AddressTitle = styled.Text`
   color: #e0e0e0;
   font-size: 16px;
   font-family: 'Roboto';
 `
+
+export const Subscription = styled.View`
+  margin-top: 10%;
+`
+
+export const Date = styled.Text`
+  color: #e0e0e0;
+  font-size: 16px;
+  font-family: 'Roboto';
+  margin-top: 2%;
+`
+
+export const Card = styled.Text`
+  color: #e0e0e0;
+  font-size: 16px;
+  font-family: 'Roboto';
+  margin-top: 2%;
+`
+
 export const AddressContent = styled.Text`
   margin-top: 2%;
   line-height: 24px;
@@ -72,22 +90,27 @@ export const AddressContent = styled.Text`
   font-family: 'Roboto';
   color: #e0e0e0;
 `
+
 export const Footer = styled.View`
-  margin-top: 38%;
-  padding-bottom: 20px;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
-  justify-content: space-between;
+  padding-bottom: 5%;
 `
+
 export const Button = styled(RectButton)`
-  width: 48%;
+  width: 43%;
   background: #34CB79;
   border-radius: 10px;
   height: 50px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 `
+
 export const ButtonText = styled.Text`
   margin-left: 8%;
   color: #FFF;
