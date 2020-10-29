@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Alert, Image, ScrollView } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Carreto from '../../assets/assets/carreto.jpg';
@@ -35,8 +35,8 @@ const ProfileProvider: React.FC = () => {
     navigate('EditProfile')
   }
 
-  function handleWhatsapp() {
-    Alert.alert('Function Mock');
+  function handlePayment() {
+    navigate('Payment')
   }
 
   return (
@@ -57,7 +57,7 @@ const ProfileProvider: React.FC = () => {
               height: 200,
               resizeMode: 'contain',
               borderRadius: 10,
-              marginTop: 10,
+        
             }} />
 
             <Description>
@@ -85,7 +85,7 @@ const ProfileProvider: React.FC = () => {
       </ScrollView>
 
       <Footer>
-        <Button style={{ backgroundColor: '#FF4242', marginRight: 10 }} onPress={handleWhatsapp}>
+        <Button style={{ backgroundColor: '#FF4242', marginRight: 10 }} onPress={handlePayment}>
           <FontAwesome name='credit-card' size={20} color='#FFF' />
           <ButtonText>Assinatura</ButtonText>
         </Button>

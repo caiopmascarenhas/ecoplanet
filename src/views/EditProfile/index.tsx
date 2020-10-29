@@ -3,7 +3,7 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
-import { Button, Input, ButtonBack } from '../../components';
+import { Button, Input, ButtonBack, ToastSuccess } from '../../components';
 import logoImg from '../../assets/assets/logo.png';
 import Bateriais from '../../assets/assets/bateriais.png';
 import Lampadas from '../../assets/assets/lampadas.png';
@@ -51,8 +51,17 @@ const EditProfile: React.FC = () => {
   const numberInputRef = useRef<TextInput>(null);
   const referenceInputRef = useRef<TextInput>(null);
 
-  const handleProfile = useCallback(async (data: SignUpFormData) => {
-    navigate('ProfileProvider');
+
+  const handleAlterProfile = useCallback(() => {
+
+    ToastSuccess('Alteração realizado com sucesso')
+
+    setTimeout(() => {
+
+      navigate('ProfileProvider')
+    }, 5000);
+
+
   }, []);
 
   return (
@@ -74,7 +83,7 @@ const EditProfile: React.FC = () => {
 
             <Title>Alterar cadastro</Title>
 
-            <Form ref={formRef} onSubmit={handleProfile}>
+            <Form ref={formRef} onSubmit={handleAlterProfile}>
               <Input
                 autoCapitalize="words"
                 name="name"
@@ -251,7 +260,7 @@ const EditProfile: React.FC = () => {
 
               </ScrollView>
 
-              <Button onPress={handleProfile}>Salvar</Button>
+              <Button onPress={handleAlterProfile}>Salvar</Button>
 
             </Form>
 

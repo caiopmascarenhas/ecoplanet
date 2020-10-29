@@ -1,9 +1,9 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
-import { Button, Input, ButtonBack } from '../../components';
+import { Button, Input, ButtonBack, Loading } from '../../components';
 import logoImg from '../../assets/assets/logo.png';
 import Bateriais from '../../assets/assets/bateriais.png';
 import Lampadas from '../../assets/assets/lampadas.png';
@@ -50,13 +50,25 @@ const SignUp: React.FC = () => {
   const addressInputRef = useRef<TextInput>(null);
   const numberInputRef = useRef<TextInput>(null);
   const referenceInputRef = useRef<TextInput>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleProfile = useCallback(async (data: SignUpFormData) => {
-    navigate('ProfileProvider');
+    setLoading(true);
+
+    setTimeout(() => {
+
+      setLoading(false);
+      navigate('ProfileProvider');
+
+    }, 5000);
+
   }, []);
 
   return (
     <>
+
+      {loading ? (<Loading />) : null}
+
       <Header>
         <ButtonBack icon="arrow-left" color="#FFF" size={18} />
       </Header>
@@ -108,7 +120,7 @@ const SignUp: React.FC = () => {
               <InputSelected>
                 <RNPickerSelect
                   style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
-                  placeholder={{ label: 'Selecione uma UF', color: "#666360" }}
+                  placeholder={{ label: 'Tipo de prestador', color: "#666360" }}
                   onValueChange={(value) => console.log(value)}
                   items={[
                     { label: 'EMPRESA LOCAL', value: 'EMPRESA LOCAL' },

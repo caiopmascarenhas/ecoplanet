@@ -30,7 +30,7 @@ export const NameProvider = styled.Text`
 `
 
 export const Description = styled.View`
-  margin-top: 10%;
+  margin-top: 5%;
 `
 
 export const Title = styled.Text`
@@ -93,12 +93,14 @@ export const AddressContent = styled.Text`
 
 export const Footer = styled.View`
   position:absolute;
+  
   bottom:0;
   width:100%;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   padding-bottom: 5%;
+  background: #563399;
 `
 
 export const Button = styled(RectButton)`

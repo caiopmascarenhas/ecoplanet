@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
@@ -12,134 +12,161 @@ import Organicos from '../../assets/assets/organicos.png';
 import PapeisEPapelao from '../../assets/assets/papeisepapelao.png';
 import Eletronico from '../../assets/assets/eletronicos.png';
 import Moveis from '../../assets/assets/moveis.png';
+import { ButtonBack, Loading } from '../../components';
 import {
   styles,
   Container,
   Header,
   Content,
-  BackButton,
-  ButtonTitle,
   MapContainer,
   MapMarkerContainer,
   MapTitle,
+  SubTitle,
   Description
 } from './styles';
 
 Icon.loadFont();
 
 const DetailsProvider: React.FC = () => {
-  const { goBack, navigate } = useNavigation();
-  const navigateBack = useCallback(() => {
-    goBack();
-  }, [goBack]);
+
+  const { navigate } = useNavigation();
+  const [loading, setLoading] = useState(false);
 
   function handleNavigateToDetailsEnterprisePage() {
-    navigate('DetailsEnterprise');
+    setLoading(true);
+
+    setTimeout(() => {
+
+      setLoading(false);
+      navigate('DetailsEnterprise');
+
+    }, 4000);
+
   }
 
   function handleNavigateToDetailsProviderPage() {
-    navigate('DetailsProvider');
+    setLoading(true);
+
+    setTimeout(() => {
+
+      setLoading(false);
+      navigate('DetailsProvider');
+
+    }, 4000);
   }
 
   return (
-    <ScrollView>
-      <Container>
-        <Header>
-          <BackButton onPress={navigateBack}>
-            <Icon name="arrow-left" size={18} color="#FFF" />
-            <ButtonTitle>Voltar</ButtonTitle>
-          </BackButton>
-        </Header>
-        <Content>
-          <Description>Encontre no mapa um ponto de coleta ou prestador de carreto.</Description>
-          <MapContainer>
-            <MapView
-              style={styles.map}
-              loadingEnabled={true}
-              initialRegion={{
-                latitude: -23.5569494,
-                longitude: -46.840088,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-              }}
-            >
-              <Marker
-                onPress={handleNavigateToDetailsEnterprisePage}
-                style={styles.mapMarker}
-                coordinate={{
+    <>
+
+      {loading ? (<Loading />) : null}
+
+      <Header>
+        <ButtonBack icon="arrow-left" color="#FFF" size={18} />
+      </Header>
+
+      <ScrollView>
+
+        <Container>
+
+          <Content>
+
+            <Description>Encontre no mapa um ponto de coleta ou prestador de carreto.</Description>
+
+            <MapContainer>
+              <MapView
+                style={styles.map}
+                loadingEnabled={true}
+                initialRegion={{
                   latitude: -23.5569494,
                   longitude: -46.840088,
-                }}>
-                <MapMarkerContainer>
-                  <Image source={Empresa} style={styles.mapMarkerImage} />
-                  <MapTitle>Empresa</MapTitle>
-                </MapMarkerContainer>
-              </Marker>
-              <Marker
-                onPress={handleNavigateToDetailsProviderPage}
-                style={styles.mapMarker}
-                coordinate={{
-                  latitude: -23.5589747,
-                  longitude: -46.8439038,
-                }}>
-                <MapMarkerContainer>
-                  <Image source={Carreto} style={styles.mapMarkerImage} />
-                  <MapTitle>Carreto</MapTitle>
-                </MapMarkerContainer>
-              </Marker>
-            </MapView>
-          </MapContainer>
-          <ScrollView
-            style={{ marginTop: 40, paddingBottom: '6%' }}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 2, }}>
-            <TouchableOpacity
-              style={styles.item}
-              activeOpacity={0.7}>
-              <Image source={Bateriais} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Pilhas Baterias</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.item]}
-              activeOpacity={0.7}>
-              <Image source={PapeisEPapelao} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Papéis e Papelão</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.item]}
-              activeOpacity={0.7}>
-              <Image source={Moveis} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Movéis</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.item}
-              activeOpacity={0.7}>
-              <Image source={Lampadas} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Lâmpadas</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.item}
-              activeOpacity={0.7}>
-              <Image source={Oleo} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Óleo de Cozinha</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.item}
-              activeOpacity={0.7}>
-              <Image source={Organicos} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Resíduo Orgânicos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.item}
-              activeOpacity={0.7}>
-              <Image source={Eletronico} style={{ width: 40, height: 40 }} />
-              <Text style={styles.itemTitle}>Resíduos Eletrônicos</Text>
-            </TouchableOpacity>
-          </ScrollView>
-        </Content>
-      </Container>
-    </ScrollView>
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121,
+                }}
+              >
+                <Marker
+                  onPress={handleNavigateToDetailsEnterprisePage}
+                  style={styles.mapMarker}
+                  coordinate={{
+                    latitude: -23.5569494,
+                    longitude: -46.840088,
+                  }}>
+                  <MapMarkerContainer>
+                    <Image source={Empresa} style={styles.mapMarkerImage} />
+                    <MapTitle>Empresa</MapTitle>
+                  </MapMarkerContainer>
+                </Marker>
+                <Marker
+                  onPress={handleNavigateToDetailsProviderPage}
+                  style={styles.mapMarker}
+                  coordinate={{
+                    latitude: -23.5589747,
+                    longitude: -46.8439038,
+                  }}>
+                  <MapMarkerContainer>
+                    <Image source={Carreto} style={styles.mapMarkerImage} />
+                    <MapTitle>Carreto</MapTitle>
+                  </MapMarkerContainer>
+                </Marker>
+              </MapView>
+            </MapContainer>
+
+            <SubTitle>Filtrar o tipo de coleta</SubTitle>
+
+            <ScrollView
+              style={{ paddingBottom: '6%' }}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 2, }}>
+              <TouchableOpacity
+                style={styles.item}
+                activeOpacity={0.7}>
+                <Image source={Bateriais} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Pilhas Baterias</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.item]}
+                activeOpacity={0.7}>
+                <Image source={PapeisEPapelao} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Papéis e Papelão</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.item]}
+                activeOpacity={0.7}>
+                <Image source={Moveis} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Movéis</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.item}
+                activeOpacity={0.7}>
+                <Image source={Lampadas} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Lâmpadas</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.item}
+                activeOpacity={0.7}>
+                <Image source={Oleo} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Óleo de Cozinha</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.item}
+                activeOpacity={0.7}>
+                <Image source={Organicos} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Resíduo Orgânicos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.item}
+                activeOpacity={0.7}>
+                <Image source={Eletronico} style={{ width: 40, height: 40 }} />
+                <Text style={styles.itemTitle}>Resíduos Eletrônicos</Text>
+              </TouchableOpacity>
+            </ScrollView>
+
+          </Content>
+
+        </Container>
+
+      </ScrollView>
+    </>
   );
 };
 

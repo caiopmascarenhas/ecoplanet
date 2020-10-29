@@ -21,30 +21,9 @@ export const Header = styled.View`
   align-items: center;
 `
 
-export const CreateAccountButton = styled.TouchableOpacity`
-`
-
-export const CreateAccoutButtonText = styled.Text`
-  color: #F4EDE8;
-  font-size: 16px;
-  font-family: 'Roboto';
-  font-weight: 700;
-`
-
 export const Title = styled.Text`
   font-size: 24px;
   color: #F4EDE8;
   font-family: 'Roboto';
   margin: 36px 0 24px;
 `;
-
-export const ForgotContainer = styled.TouchableOpacity`
-  margin-top: 24px;
-`;
-
-export const ForgotPasswordText = styled.Text`
-  color: #F4EDE8;
-  font-size: 16px;
-  font-family: 'Roboto';
-`;
-

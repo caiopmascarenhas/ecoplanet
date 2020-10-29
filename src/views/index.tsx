@@ -7,6 +7,8 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ProfileProvider from './ProfileProvider';
 import EditProfile from './EditProfile';
+import Payment from './Payment';
+import ForgotPassword from './ForgotPassword';
 
 export {
   Home,
@@ -17,5 +19,7 @@ export {
   SignIn,
   SignUp,
   ProfileProvider,
-  EditProfile
+  EditProfile,
+  Payment,
+  ForgotPassword
 }

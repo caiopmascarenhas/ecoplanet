@@ -1,22 +1,27 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
+import { ButtonBack } from '../../components';
 import RNPickerSelect from 'react-native-picker-select';
-import { Button } from '../../components';
+import { Button, Loading } from '../../components';
 import Localization from '../../assets/assets/localization.png';
+import { heightPercentageToDP, widthPercentageToDP } from '../../constants/PixelRatio';
 import {
   styles,
   Container,
   Header,
   Content,
-  BackButton,
-  ButtonTitle,
   ContentBanner,
   ContentTitle,
+  InputTitle,
   InputSelected,
   ButtonContainer,
+  Footer,
+
+
+
 } from './styles';
 
 Icon.loadFont();
@@ -35,11 +40,8 @@ const SearchLocation: React.FC = () => {
   const [cities, setCities] = useState<string[]>([]);
   const [selectedUf, setSelectedUf] = useState(' ');
   const [selectedCity, setSelectedCity] = useState(' ');
-  const { goBack, navigate } = useNavigation();
-
-  const navigateBack = useCallback(() => {
-    goBack();
-  }, [goBack]);
+  const [loading, setLoading] = useState(false);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     axios
@@ -75,52 +77,82 @@ const SearchLocation: React.FC = () => {
   }
 
   function handleNavigateToDetailsProviderPage() {
-    Alert.alert('Os dados nas próximas telas são mocados')
-    navigate('LocaleMap');
+    setLoading(true);
+
+    setTimeout(() => {
+
+      setLoading(false);
+      navigate('LocaleMap');
+
+    }, 5000);
+
   }
 
   return (
-    <ScrollView>
-      <Container>
-        <Header>
-          <BackButton onPress={navigateBack}>
-            <Icon name="arrow-left" size={18} color="#FFF" />
-            <ButtonTitle>Voltar</ButtonTitle>
-          </BackButton>
-        </Header>
-        <Content>
+    <>
+
+      {loading ? (<Loading />) : null}
+
+      <Header>
+        <ButtonBack icon="arrow-left" color="#FFF" size={18} />
+      </Header>
+
+      <ScrollView >
+
+        <Container>
+
           <ContentBanner>
-            <ContentTitle>Localizar pontos de coleta</ContentTitle>
-            <Image source={Localization} style={{ width: '100%', height: 60 }} resizeMode="contain" />
+            <Image source={Localization} style={{
+              width: widthPercentageToDP('100%'),
+              height: heightPercentageToDP('10%'),
+              resizeMode: 'contain',
+            }} />
+            <ContentTitle>Localizar serviços de coleta</ContentTitle>
           </ContentBanner>
-          <InputSelected>
-            <RNPickerSelect
-              style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
-              placeholder={{ label: 'Selecione uma UF', color: "#777777" }}
-              onValueChange={handleSelectUf}
-              value={selectedUf}
-              items={ufs.map((uf) => (
-                { label: uf, value: uf }
-              ))}
-            />
-          </InputSelected>
-          <InputSelected>
-            <RNPickerSelect
-              style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
-              placeholder={{ label: 'Selecione uma cidade' }}
-              onValueChange={handleSelectCity}
-              value={selectedCity}
-              items={cities.map((city) => (
-                { label: city, value: city }
-              ))}
-            />
-          </InputSelected>
-          <ButtonContainer>
-            <Button onPress={handleNavigateToDetailsProviderPage}>BUSCAR</Button>
-          </ButtonContainer>
-        </Content>
-      </Container>
-    </ScrollView>
+
+          <Content>
+
+            <InputTitle>Estado</InputTitle>
+
+            <InputSelected>
+              <RNPickerSelect
+                style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
+                placeholder={{ label: 'Selecione uma UF', color: "#777777" }}
+                onValueChange={handleSelectUf}
+                value={selectedUf}
+                items={ufs.map((uf) => (
+                  { label: uf, value: uf }
+                ))}
+              />
+            </InputSelected>
+
+            <InputTitle>Cidade</InputTitle>
+
+            <InputSelected>
+              <RNPickerSelect
+                style={{ inputIOS: styles.inputSelect, inputAndroid: styles.inputSelect }}
+                placeholder={{ label: 'Selecione uma cidade' }}
+                onValueChange={handleSelectCity}
+                value={selectedCity}
+                items={cities.map((city) => (
+                  { label: city, value: city }
+                ))}
+              />
+            </InputSelected>
+
+          </Content>
+
+        </Container>
+
+      </ScrollView>
+
+      <Footer>
+        <ButtonContainer>
+          <Button onPress={handleNavigateToDetailsProviderPage}>BUSCAR</Button>
+        </ButtonContainer>
+      </Footer>
+
+    </>
   );
 };
 

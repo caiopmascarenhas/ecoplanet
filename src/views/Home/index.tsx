@@ -5,6 +5,7 @@ import Truck from '../../assets/assets/truck.png';
 import Search from '../../assets/assets/search.png';
 import HeartIcon from '../../assets/assets/heart.png';
 import logoImg from '../../assets/assets/logo.png';
+import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
 import {
   Container,
   Title,
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
     <ScrollView>
       <Container>
         <ContainerHeader>
-          <Image source={logoImg} style={{ width: '100%', height: 200 }} resizeMode="contain" />
+          <Image source={logoImg} style={{ width: widthPercentageToDP('100%'), height: heightPercentageToDP('20%') }} resizeMode="contain" />
           <HeaderTitle>ECO PLANET</HeaderTitle>
         </ContainerHeader>
         <Title>
@@ -45,13 +46,13 @@ const Home: React.FC = () => {
         </Title>
         <ButtonContainer>
           <ButtonPrimary onPress={handleNavigateToSignInPage}>
-            <Image source={Truck} style={{ width: 50, height: 50 }} />
+            <Image source={Truck} style={{ width: widthPercentageToDP('10%'), height: heightPercentageToDP('5%') }} resizeMode="contain" />
             <ButtonText>
               Prestar Serviço
             </ButtonText>
           </ButtonPrimary>
           <ButtonSecondary onPress={handleNavigateToSearchServicePage}>
-            <Image source={Search} style={{ width: 50, height: 50 }} />
+            <Image source={Search} style={{ width: widthPercentageToDP('10%'), height: heightPercentageToDP('5%') }} resizeMode="contain" />
             <ButtonText>
               Solicitar Serviço
             </ButtonText>

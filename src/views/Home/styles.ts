@@ -1,6 +1,7 @@
 import React from 'react'
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import { widthPercentageToDP, heightPercentageToDP } from '../../constants/PixelRatio';
 
 export const Container = styled.View`
   background: #563399;
@@ -16,7 +17,7 @@ export const ContainerHeader = styled.View`
 `
 
 export const HeaderTitle = styled.Text`
-  font-size: 30px;
+  font-size: ${widthPercentageToDP(8)}px;
   color: #F4EDE8;
   font-weight: 700;
   margin-top: 10%;
@@ -47,7 +48,7 @@ export const ButtonContainer = styled.View`
 
 export const ButtonPrimary = styled(RectButton)`
   background: #9871F5;
-  height: 150px;
+  height:${heightPercentageToDP(19)}px;
   width: 48%;
   border-radius: 8px;
   padding: 6%;
@@ -55,14 +56,14 @@ export const ButtonPrimary = styled(RectButton)`
 `
 export const ButtonSecondary = styled(RectButton)`
   background: #04D361;
-  height: 150px;
+  height: ${heightPercentageToDP(19)}px;
   width: 48%;
   border-radius: 8px;
   padding: 6%;
   justify-content: space-between;
 `
 export const ButtonText = styled.Text`
-  font-size: 20px;
+  font-size:  ${heightPercentageToDP(2.7)}px;
   color: #F4EDE8;
   font-weight: 700;
 `

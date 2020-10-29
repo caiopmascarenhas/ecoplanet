@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
-import { Button, ButtonBack, Input, Loading } from '../../components';
+import { Button, ButtonBack, Input, Loading, ToastSuccess } from '../../components';
 import logoImg from '../../assets/assets/logo.png';
 import {
   Image,
@@ -16,10 +16,6 @@ import {
   Container,
   Title,
   Header,
-  ForgotContainer,
-  ForgotPasswordText,
-  CreateAccountButton,
-  CreateAccoutButtonText,
   Content
 } from './styles';
 
@@ -28,36 +24,24 @@ interface SignInFormData {
   password: string,
 }
 
-const SignIn: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   const { navigate } = useNavigation();
-  const passwordInputRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = useCallback(async (data: SignInFormData) => {
 
-    setLoading(true);
+    ToastSuccess('E-mail de recuperação enviado!')
 
     setTimeout(() => {
 
-      setLoading(false);
-      navigate('ProfileProvider');
+      navigate('SignIn');
 
     }, 5000);
 
 
   }, []);
 
-
-  function handleNavigateToSignUpPage() {
-
-    navigate('SignUp');
-  }
-
-  function handleNavigateToForgotPasswordPage() {
-
-    navigate('ForgotPassword');
-  }
 
   return (
     <>
@@ -66,9 +50,6 @@ const SignIn: React.FC = () => {
 
       <Header>
         <ButtonBack icon="arrow-left" color="#FFF" size={18} />
-        <CreateAccountButton onPress={handleNavigateToSignUpPage}>
-          <CreateAccoutButtonText>Criar Conta</CreateAccoutButtonText>
-        </CreateAccountButton>
       </Header>
 
       <KeyboardAvoidingView
@@ -87,39 +68,24 @@ const SignIn: React.FC = () => {
               <Image source={logoImg} style={{ width: '100%', height: 120 }} resizeMode="contain" />
 
               <View>
-                <Title>Faça seu logon</Title>
+                <Title>Insira e-mail de recuperação</Title>
               </View>
 
               <Form ref={formRef} onSubmit={handleSignIn}>
 
                 <Input
-                  onSubmitEditing={() => { passwordInputRef.current?.focus() }}
+                  onSubmitEditing={() => { formRef.current?.focus() }}
                   autoCorrect={false}
                   autoCapitalize="none"
                   keyboardType="email-address"
-                  returnKeyType="next"
+                  returnKeyType="send"
                   name="email"
                   feather="mail"
                   placeholder="E-mail" />
 
-                <Input
-                  ref={passwordInputRef}
-                  onSubmitEditing={() => { formRef.current?.submitForm() }}
-                  secureTextEntry
-                  returnKeyType="send"
-                  name="password"
-                  feather="lock"
-                  placeholder="Senha" />
-
                 <Button onPress={() => { formRef.current?.submitForm() }}>Entrar</Button>
 
               </Form>
-
-              <ForgotContainer onPress={handleNavigateToForgotPasswordPage}>
-                <ForgotPasswordText>
-                  Esqueci minha senha
-             </ForgotPasswordText>
-              </ForgotContainer>
 
             </Content>
 
@@ -132,4 +98,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;
