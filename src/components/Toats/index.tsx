@@ -16,7 +16,7 @@ export const ToastError = (menssage: any) => Toast.show(menssage, {
   imgStyle: {},
   mask: false,
   maskStyle: {},
-  duration: 3900,
+  duration: 1000,
   animation: true,
 });
 
@@ -35,6 +35,6 @@ export const ToastSuccess = (menssage: any) => Toast.show(menssage, {
   imgStyle: {},
   mask: false,
   maskStyle: {},
-  duration: 3900,
+  duration: 1000,
   animation: true,
 });

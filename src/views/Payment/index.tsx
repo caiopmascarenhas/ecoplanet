@@ -4,6 +4,7 @@ import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Input, ButtonBack, ToastSuccess } from '../../components';
 import logPayment from '../../assets/assets/payment.png';
+import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
 import {
   Image,
   TextInput,
@@ -14,6 +15,7 @@ import {
 } from 'react-native';
 import {
   Container,
+  ContentImage,
   Title,
   Header,
   Description,
@@ -35,7 +37,7 @@ const Payment: React.FC = () => {
     setTimeout(() => {
 
       navigate('ProfileProvider')
-    }, 5000);
+    }, 1500);
 
 
   }, []);
@@ -55,7 +57,17 @@ const Payment: React.FC = () => {
 
           <Container>
 
-            <Image source={logPayment} style={{ width: '100%', height: 120, marginTop: 5, marginBottom: 20 }} resizeMode="contain" />
+            <ContentImage>   
+              <Image source={logPayment} 
+                  style={{ 
+                  width: widthPercentageToDP('100%'), 
+                  height: heightPercentageToDP('14%'), 
+                  borderRadius: heightPercentageToDP('2%'),
+                  marginTop: 5, 
+                  marginBottom: 20, }} 
+                  resizeMode="contain"
+                />
+            </ContentImage>
 
             <Title>Método de Pagamento</Title>
 

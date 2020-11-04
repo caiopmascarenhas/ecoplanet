@@ -5,10 +5,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Carreto from '../../assets/assets/carreto.jpg';
 import { ButtonBack } from '../../components';
+import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
 import {
   Container,
   Header,
   Content,
+  ContentImage,
   Title,
   Items,
   Address,
@@ -52,13 +54,17 @@ const ProfileProvider: React.FC = () => {
 
           <Content>
 
-            <Image source={Carreto} style={{
-              width: '100%',
-              height: 200,
-              resizeMode: 'contain',
-              borderRadius: 10,
-        
-            }} />
+           <ContentImage>   
+            <Image source={Carreto} 
+                style={{ 
+                width: widthPercentageToDP('100%'), 
+                height: heightPercentageToDP('27%'), 
+                borderRadius: heightPercentageToDP('2%'),
+                marginTop: 5, 
+                marginBottom: heightPercentageToDP('2%'), }} 
+                resizeMode="contain"
+              />
+            </ContentImage>
 
             <Description>
               <Title>Kombi Carreto</Title>

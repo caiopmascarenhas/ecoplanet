@@ -38,7 +38,6 @@ const Home: React.FC = () => {
       <Container>
         <ContainerHeader>
           <Image source={logoImg} style={{ width: widthPercentageToDP('100%'), height: heightPercentageToDP('20%') }} resizeMode="contain" />
-          <HeaderTitle>ECO PLANET</HeaderTitle>
         </ContainerHeader>
         <Title>
           Seja bem-vindo,{'\n'}

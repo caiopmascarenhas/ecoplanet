@@ -16,6 +16,10 @@ export const Container = styled.View`
   padding: 0 30px ${Platform.OS === 'android' ? 20 : 40}px;
 `;
 
+export const ContentImage = styled.View`
+  align-items: center;  
+`
+
 export const Title = styled.Text`
   font-size: 18px;
   font-weight:700;
@@ -29,7 +33,7 @@ export const Description = styled.Text`
   color: #04D361;
   font-family: 'Roboto';
   font-weight:700;
-  padding-bottom: 5%
+  padding-bottom: 5%;
 `
 
 export const BackToSignIn = styled.TouchableOpacity`

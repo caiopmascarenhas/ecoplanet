@@ -5,7 +5,6 @@ import { heightPercentageToDP, widthPercentageToDP } from '../../constants/Pixel
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  background: #563399;
   flex:1;
   width: 100%;
   height: 100%;

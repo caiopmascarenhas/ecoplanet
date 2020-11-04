@@ -22,6 +22,10 @@ export const Content = styled.View`
   justify-content: center;
 `
 
+export const ContentImage = styled.View`
+  align-items: center;  
+`
+
 export const NameProvider = styled.Text`
   color: #e0e0e0;
   font-weight: 700;

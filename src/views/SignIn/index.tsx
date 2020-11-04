@@ -3,7 +3,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import { Button, ButtonBack, Input, Loading } from '../../components';
-import logoImg from '../../assets/assets/logo.png';
+import LoginImg from '../../assets/assets/login.png';
+import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
 import {
   Image,
   KeyboardAvoidingView,
@@ -84,7 +85,7 @@ const SignIn: React.FC = () => {
 
             <Content>
 
-              <Image source={logoImg} style={{ width: '100%', height: 120 }} resizeMode="contain" />
+              <Image source={LoginImg} style={{ width: widthPercentageToDP('100%'), height: heightPercentageToDP('15%') }} resizeMode="contain" />
 
               <View>
                 <Title>Faça seu logon</Title>

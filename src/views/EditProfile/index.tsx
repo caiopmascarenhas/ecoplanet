@@ -4,7 +4,7 @@ import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 import { Button, Input, ButtonBack, ToastSuccess } from '../../components';
-import logoImg from '../../assets/assets/logo.png';
+import EditUserImg from '../../assets/assets/edit-user.png';
 import Bateriais from '../../assets/assets/bateriais.png';
 import Lampadas from '../../assets/assets/lampadas.png';
 import Oleo from '../../assets/assets/oleo.png';
@@ -12,6 +12,7 @@ import Organicos from '../../assets/assets/organicos.png';
 import PapeisEPapelao from '../../assets/assets/papeisepapelao.png';
 import Eletronico from '../../assets/assets/eletronicos.png';
 import Moveis from '../../assets/assets/moveis.png';
+import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
 import {
   Image,
   TextInput,
@@ -24,6 +25,7 @@ import {
 import {
   styles,
   Container,
+  ContentImage,
   Title,
   SubTitle,
   InputSelected,
@@ -59,7 +61,7 @@ const EditProfile: React.FC = () => {
     setTimeout(() => {
 
       navigate('ProfileProvider')
-    }, 5000);
+    }, 1500);
 
 
   }, []);
@@ -79,7 +81,16 @@ const EditProfile: React.FC = () => {
 
           <Container>
 
-            <Image source={logoImg} style={{ width: '100%', height: 120, marginTop: 5, marginBottom: 20 }} resizeMode="contain" />
+            <ContentImage>   
+              <Image source={EditUserImg}  
+                style={{ 
+                  width: widthPercentageToDP('100%'), 
+                  height: heightPercentageToDP('15%'),
+                  marginTop: 5, 
+                  marginBottom: 20,}} 
+                  resizeMode="contain" 
+              />
+            </ContentImage>
 
             <Title>Alterar cadastro</Title>
 

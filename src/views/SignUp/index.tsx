@@ -4,7 +4,7 @@ import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 import { Button, Input, ButtonBack, Loading } from '../../components';
-import logoImg from '../../assets/assets/logo.png';
+import SingUpImg from '../../assets/assets/add-file.png';
 import Bateriais from '../../assets/assets/bateriais.png';
 import Lampadas from '../../assets/assets/lampadas.png';
 import Oleo from '../../assets/assets/oleo.png';
@@ -12,6 +12,7 @@ import Organicos from '../../assets/assets/organicos.png';
 import PapeisEPapelao from '../../assets/assets/papeisepapelao.png';
 import Eletronico from '../../assets/assets/eletronicos.png';
 import Moveis from '../../assets/assets/moveis.png';
+import { widthPercentageToDP, heightPercentageToDP } from '../../constants/PixelRatio';
 import {
   Image,
   TextInput,
@@ -24,10 +25,11 @@ import {
 import {
   styles,
   Container,
+  ContentImage,
   Title,
   SubTitle,
   InputSelected,
-  Header
+  Header,
 } from './styles';
 
 interface SignUpFormData {
@@ -82,7 +84,15 @@ const SignUp: React.FC = () => {
 
           <Container>
 
-            <Image source={logoImg} style={{ width: '100%', height: 120, marginTop: 5, marginBottom: 20 }} resizeMode="contain" />
+            <ContentImage>
+              <Image source={SingUpImg}
+                style={{
+                  width: widthPercentageToDP('100%'),
+                  height: heightPercentageToDP('15%')
+                }}
+                resizeMode="contain"
+              />
+            </ContentImage>
 
             <Title>Preencha o formulário</Title>
 

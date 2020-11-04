@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import { widthPercentageToDP, heightPercentageToDP } from '../../constants/PixelRatio';
 
 export const Container = styled.View`
-  background: #563399;
   flex:1;
   width: 100%;
   height: 100%;
@@ -27,7 +26,7 @@ export const Title = styled.Text`
   font-size: 20px;
   color: #F4EDE8;
   font-family: 'Roboto';
-  margin: 15% 0 5%;
+  margin: 25% 0 5%;
   font-weight: 400;
   line-height: 30px;
 `;
@@ -54,6 +53,7 @@ export const ButtonPrimary = styled(RectButton)`
   padding: 6%;
   justify-content: space-between;
 `
+
 export const ButtonSecondary = styled(RectButton)`
   background: #04D361;
   height: ${heightPercentageToDP(19)}px;
@@ -62,6 +62,7 @@ export const ButtonSecondary = styled(RectButton)`
   padding: 6%;
   justify-content: space-between;
 `
+
 export const ButtonText = styled.Text`
   font-size:  ${heightPercentageToDP(2.7)}px;
   color: #F4EDE8;
@@ -74,6 +75,7 @@ export const Footer = styled.View`
   align-items: center;
   padding-bottom: 6%;
 `
+
 export const FooterText = styled.Text`
   line-height: 20px;
   color: #D4C2FF;

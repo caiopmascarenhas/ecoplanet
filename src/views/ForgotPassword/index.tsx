@@ -3,7 +3,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import { Button, ButtonBack, Input, Loading, ToastSuccess } from '../../components';
-import logoImg from '../../assets/assets/logo.png';
+import { widthPercentageToDP, heightPercentageToDP } from '../../constants/PixelRatio';
+import EmailImg from '../../assets/assets/email.png';
 import {
   Image,
   KeyboardAvoidingView,
@@ -37,7 +38,7 @@ const ForgotPassword: React.FC = () => {
 
       navigate('SignIn');
 
-    }, 5000);
+    }, 1500);
 
 
   }, []);
@@ -65,7 +66,12 @@ const ForgotPassword: React.FC = () => {
 
             <Content>
 
-              <Image source={logoImg} style={{ width: '100%', height: 120 }} resizeMode="contain" />
+              <Image source={EmailImg} style={{
+                width: widthPercentageToDP('100%'),
+                height: heightPercentageToDP('15%')
+              }}
+                resizeMode="contain"
+              />
 
               <View>
                 <Title>Insira e-mail de recuperação</Title>
