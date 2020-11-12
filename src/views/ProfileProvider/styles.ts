@@ -23,9 +23,13 @@ export const Content = styled.View`
 `
 
 export const ContentImage = styled.View`
-  align-items: center;  
+  align-items: center;
+ justify-content: center; 
 `
-
+export const Camera = styled.View`
+  display: flex;
+  position: absolute;
+`
 export const NameProvider = styled.Text`
   color: #e0e0e0;
   font-weight: 700;

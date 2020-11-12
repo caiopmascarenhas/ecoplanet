@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Image, ScrollView } from 'react-native';
+import { Image, ScrollView, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Carreto from '../../assets/assets/carreto.jpg';
+import PhotoCamera from '../../assets/assets/camera.png';
+import ImagePicker from 'react-native-image-picker';
 import { ButtonBack } from '../../components';
-import {widthPercentageToDP, heightPercentageToDP} from '../../constants/PixelRatio';
+import { widthPercentageToDP, heightPercentageToDP } from '../../constants/PixelRatio';
 import {
   Container,
   Header,
@@ -24,7 +26,8 @@ import {
   WhatsApp,
   Subscription,
   Date,
-  Card
+  Card,
+  Camera
 } from './styles';
 
 Feather.loadFont();
@@ -41,6 +44,20 @@ const ProfileProvider: React.FC = () => {
     navigate('Payment')
   }
 
+  const handleUpdateAvatar = useCallback(() => {
+    ImagePicker.showImagePicker({
+      title: 'Selecione uma foto',
+      cancelButtonTitle: 'Cancelar',
+      takePhotoButtonTitle: 'User câmera',
+      chooseFromLibraryButtonTitle: 'Escolher da galeria',
+      
+
+    }, response => {
+
+    });
+
+  },[]);
+
   return (
     <>
       <Header>
@@ -54,16 +71,33 @@ const ProfileProvider: React.FC = () => {
 
           <Content>
 
-           <ContentImage>   
-            <Image source={Carreto} 
-                style={{ 
-                width: widthPercentageToDP('100%'), 
-                height: heightPercentageToDP('27%'), 
-                borderRadius: heightPercentageToDP('2%'),
-                marginTop: 5, 
-                marginBottom: heightPercentageToDP('2%'), }} 
+            <ContentImage>
+              <Image source={Carreto}
+                style={{
+                  width: widthPercentageToDP('100%'),
+                  height: heightPercentageToDP('27%'),
+                  borderRadius: heightPercentageToDP('2%'),
+                  marginTop: 5,
+                  marginBottom: heightPercentageToDP('2%'),
+                }}
                 resizeMode="contain"
               />
+              <Camera>
+                <TouchableOpacity
+                  onPress={handleUpdateAvatar}
+                  activeOpacity={0.6}>
+                  <Image source={PhotoCamera}
+                    style={{
+                      width: widthPercentageToDP('100%'),
+                      height: heightPercentageToDP('7%'),
+                      borderRadius: heightPercentageToDP('2%'),
+                      opacity: 0.7,
+                      marginBottom: heightPercentageToDP('2%'),
+                    }}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </Camera>
             </ContentImage>
 
             <Description>
